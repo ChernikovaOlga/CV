@@ -2,438 +2,533 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Olga Chernikova - Motion Designer</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultra-Narrow Header and Flatter Skill Tiles</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css"
-    />
-    <!-- highlight.js script -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-    <!-- auto initialization -->
-    <script>hljs.highlightAll();</script>
+    <style>
+    /* Motion Design Inspired Header Styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background-color: #f5f5f5;
+    }
+
+    /* ULTRA-NARROW HEADER - Further reduced to 210px with bottom part removed */
+    .header {
+        position: relative;
+        height: 210px; /* Further reduced from 260px */
+        background-color: #111;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: none; /* Remove any border */
+    }
+
+    /* Animated Background Elements - Smaller sizes */
+    .motion-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    .motion-element {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(8px);
+        opacity: 0.7;
+        animation: float 8s infinite ease-in-out;
+    }
+
+    .element-1 {
+        width: 90px; /* Reduced size */
+        height: 90px;
+        background: linear-gradient(45deg, #FF3CAC, #784BA0);
+        top: 10%;
+        left: 15%;
+        animation-delay: 0s;
+    }
+
+    .element-2 {
+        width: 120px; /* Reduced size */
+        height: 120px;
+        background: linear-gradient(45deg, #2B86C5, #00FFFF);
+        bottom: 15%;
+        right: 10%;
+        animation-delay: 1s;
+    }
+
+    .element-3 {
+        width: 60px; /* Reduced size */
+        height: 60px;
+        background: linear-gradient(45deg, #FF3CAC, #FF5858);
+        bottom: 25%;
+        left: 25%;
+        animation-delay: 2s;
+    }
+
+    .element-4 {
+        width: 75px; /* Reduced size */
+        height: 75px;
+        background: linear-gradient(45deg, #8A2387, #E94057);
+        top: 15%;
+        right: 20%;
+        animation-delay: 3s;
+    }
+
+    /* Lines animation */
+    .motion-lines {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        opacity: 0.4;
+    }
+
+    .line {
+        position: absolute;
+        height: 1px; /* Thinner lines */
+        background-color: rgba(255, 255, 255, 0.3);
+        animation: moveLine 8s infinite linear;
+    }
+
+    .line-1 {
+        width: 40%;
+        top: 20%;
+        left: -40%;
+        animation-delay: 0s;
+    }
+
+    .line-2 {
+        width: 30%;
+        top: 40%;
+        left: -30%;
+        animation-delay: 2s;
+    }
+
+    .line-3 {
+        width: 50%;
+        top: 60%;
+        left: -50%;
+        animation-delay: 4s;
+    }
+
+    .line-4 {
+        width: 35%;
+        top: 80%;
+        left: -35%;
+        animation-delay: 6s;
+    }
+
+    /* Grid animation */
+    .motion-grid {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size: 15px 15px; /* Smaller grid */
+        z-index: 2;
+        animation: moveGrid 20s infinite linear;
+    }
+
+    /* Overlay for better text visibility */
+    .header-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%);
+        z-index: 3;
+    }
+
+    /* Ultra-compact header content */
+    .header-content {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        color: white;
+        max-width: 800px;
+        padding: 0 15px;
+    }
+
+    /* Further reduced name font size and margin */
+    .name {
+        font-size: 2rem; /* Reduced from 2.2rem */
+        font-weight: 700;
+        margin-bottom: 1px; /* Reduced from 2px */
+        letter-spacing: 1px;
+        background: linear-gradient(90deg, #FF3CAC, #784BA0, #2B86C5);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: textGradient 6s infinite linear;
+        text-shadow: 0 0 10px rgba(255, 60, 172, 0.5);
+    }
+
+    .glitch-container {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 5px; /* Reduced from 6px */
+    }
+
+    /* Further reduced title font size and margin */
+    .title {
+        font-size: 0.95rem; /* Reduced from 1rem */
+        letter-spacing: 2px; 
+        text-transform: uppercase;
+        position: relative;
+        display: inline-block;
+        margin-bottom: 6px; /* Reduced from 8px */
+    }
+
+    .title::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 1px; /* Thinner underline */
+        bottom: -3px; /* Reduced from -4px */
+        left: 0;
+        background: linear-gradient(90deg, #FF3CAC, #784BA0, #2B86C5);
+        animation: widthPulse 3s infinite ease-in-out;
+    }
+
+    /* More compact contact links */
+    .contact {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 5px; /* Reduced from 6px */
+        margin-bottom: 6px; /* Reduced from 8px */
+    }
+
+    .contact a {
+        color: white;
+        text-decoration: none;
+        font-size: 0.75rem; /* Reduced from 0.8rem */
+        padding: 3px 7px; /* Reduced from 4px 8px */
+        border-radius: 12px; /* Reduced from 15px */
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 3px; /* Reduced from 4px */
+    }
+
+    .contact a:hover {
+        background: rgba(255, 60, 172, 0.3);
+        transform: translateY(-2px);
+    }
+
+    /* Smaller download button */
+    .download-btn {
+        display: inline-block;
+        background: linear-gradient(90deg, #FF3CAC, #784BA0);
+        color: white;
+        text-decoration: none;
+        padding: 4px 9px; /* Reduced from 5px 10px */
+        border-radius: 12px; /* Reduced from 15px */
+        font-size: 0.75rem; /* Reduced from 0.8rem */
+        font-weight: 500;
+        transition: all 0.3s ease;
+        margin-top: 0px; /* No more margin */
+        box-shadow: 0 3px 8px rgba(255, 60, 172, 0.3);
+    }
+
+    .download-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(255, 60, 172, 0.5);
+    }
+
+    .download-btn i {
+        margin-right: 3px; /* Reduced from 4px */
+    }
+
+    /* Professional Summary section */
+    .professional-summary {
+        max-width: 960px;
+        margin: 15px auto; /* Reduced from 20px */
+        padding: 0 20px;
+    }
+
+    .section-title {
+        color: #FF3CAC;
+        font-size: 1.4rem; /* Reduced from 1.5rem */
+        margin-bottom: 10px; /* Reduced from 12px */
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    /* ULTRA FLAT Skills Tiles */
+    .skills-container {
+        margin-top: 15px; /* Reduced from 20px */
+    }
+
+    .skills-group {
+        margin-bottom: 12px; /* Reduced from 15px */
+    }
+
+    .skills-group-title {
+        font-size: 1rem;
+        color: #333;
+        margin-bottom: 6px; /* Reduced from 8px */
+        padding-bottom: 3px; /* Reduced from 4px */
+        border-bottom: 2px solid #FF3CAC;
+    }
+
+    /* Flatter tiles with less vertical height */
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+        gap: 6px; /* Reduced from 8px */
+    }
+
+    .skill-tile {
+        background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+        border-radius: 5px; /* Reduced from 6px */
+        padding: 5px 4px; /* Reduced vertical padding from 6px to 5px */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        min-height: 45px; /* Reduced significantly from 55px for flatter tiles */
+    }
+
+    .skill-tile:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px rgba(255, 60, 172, 0.2);
+    }
+
+    .skill-tile i {
+        font-size: 15px; /* Reduced from 16px */
+        color: #FF3CAC;
+        margin-bottom: 2px; /* Reduced from 4px */
+    }
+
+    .skill-tile span {
+        font-size: 0.65rem; /* Reduced from 0.7rem */
+        color: #333;
+        font-weight: 500;
+    }
+
+    /* Animations */
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0) scale(1);
+        }
+        50% {
+            transform: translateY(-10px) scale(1.05); /* Reduced movement */
+        }
+    }
+
+    @keyframes textGradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    @keyframes widthPulse {
+        0%, 100% {
+            width: 50%;
+            left: 25%;
+        }
+        50% {
+            width: 100%;
+            left: 0;
+        }
+    }
+
+    @keyframes moveGrid {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(40px); /* Reduced from 60px */
+        }
+    }
+
+    @keyframes moveLine {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(100vw + 100%));
+        }
+    }
+
+    /* Responsive styling */
+    @media (max-width: 768px) {
+        .header {
+            height: 200px; /* Even smaller for mobile */
+        }
+        
+        .name {
+            font-size: 1.6rem; /* Reduced from 1.8rem */
+            letter-spacing: 0.5px;
+        }
+        
+        .title {
+            font-size: 0.8rem; /* Reduced from 0.85rem */
+            letter-spacing: 1.5px;
+        }
+        
+        .contact {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px; /* Reduced from 5px */
+        }
+        
+        .contact a {
+            font-size: 0.7rem; /* Reduced from 0.75rem */
+            padding: 2px 6px; /* Reduced from 3px 7px */
+        }
+        
+        .download-btn {
+            font-size: 0.7rem; /* Reduced from 0.75rem */
+            padding: 3px 7px; /* Reduced from 4px 8px */
+            margin-top: 4px;
+        }
+        
+        /* Even flatter tiles for mobile */
+        .skills-grid {
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 5px; /* Reduced from 6px */
+        }
+        
+        .skill-tile {
+            min-height: 40px; /* Reduced from 50px for ultra flat tiles */
+            padding: 4px 3px; /* Reduced from 5px 3px */
+        }
+        
+        .skill-tile i {
+            font-size: 13px; /* Reduced from 14px */
+            margin-bottom: 2px; /* Reduced from 3px */
+        }
+        
+        .skill-tile span {
+            font-size: 0.6rem; /* Reduced from 0.65rem */
+        }
+    }
+    </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
-        <div id="particles-js"></div>
-        <div class="container header-content">
+        <!-- Animated Background Elements -->
+        <div class="motion-bg">
+            <div class="motion-element element-1"></div>
+            <div class="motion-element element-2"></div>
+            <div class="motion-element element-3"></div>
+            <div class="motion-element element-4"></div>
+        </div>
+        
+        <!-- Animated Lines -->
+        <div class="motion-lines">
+            <div class="line line-1"></div>
+            <div class="line line-2"></div>
+            <div class="line line-3"></div>
+            <div class="line line-4"></div>
+        </div>
+        
+        <!-- Grid Background -->
+        <div class="motion-grid"></div>
+        
+        <!-- Overlay for better text visibility -->
+        <div class="header-overlay"></div>
+        
+        <!-- Ultra-narrow header content - bottom part removed -->
+        <div class="header-content">
             <h1 class="name">Olga Chernikova</h1>
-            <p class="title">Motion Designer</p>
+            <div class="glitch-container">
+                <p class="title">MOTION DESIGNER</p>
+            </div>
             <div class="contact">
                 <a href="mailto:chernikova.motion@gmail.com"><i class="fas fa-envelope"></i> chernikova.motion@gmail.com</a>
-                <a href="https://www.linkedin.com/in/olgachernikova01/" target="_blank" rel="noopener noreferrer">
-                  <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="https://www.behance.net/chernikovaolga" target="_blank" rel="noopener noreferrer">
-                  <i class="fab fa-behance"></i> Behance
-                </a>
-                <a href="https://youtu.be/W9yq01RTx6g" target="_blank" rel="noopener noreferrer">
-                  <i class="fab fa-youtube"></i> Showreel
-                </a>
+                <a href="https://www.linkedin.com/in/olgachernikova01/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://www.behance.net/chernikovaolga" target="_blank"><i class="fab fa-behance"></i> Behance</a>
+                <a href="https://youtu.be/W9yq01RTx6g" target="_blank"><i class="fab fa-youtube"></i> Showreel</a>
             </div>
-            <!-- Adding small spacing -->
-            <br>
-            <!-- Download PDF Button in header -->
-            <a href="javascript:void(0)" onclick="downloadCV()" class="download-btn">
-                <i class="fas fa-file-download"></i> Download CV in PDF
-            </a>
+            <a href="javascript:void(0)" class="download-btn"><i class="fas fa-file-download"></i> Download CV in PDF</a>
         </div>
     </header>
 
-    <!-- Main content -->
-    <div class="main-content container">
-        <!-- Professional Summary -->
-        <section class="section">
-            <h2 class="section-title"><i class="fas fa-user-tie"></i> Professional Summary</h2>
-            <p>Creative and detail-oriented Motion Designer with 6+ years of experience in the animation and 3D design field. Proven record of creating exceptional graphics for top companies in the country. I help brands enhance their visual storytelling and presence through compelling animated and static compositions.</p>
-        </section>
-
-        <!-- Skills - tiles version -->
-        <section class="section">
-            <h2 class="section-title"><i class="fas fa-code"></i> Skills & Tools</h2>
-            
-            <div class="skills-container">
-                <div class="skills-group">
-                    <h3 class="skills-group-title">Motion Software</h3>
-                    <div class="skills-grid">
-                        <div class="skill-tile">
-                            <i class="fas fa-film"></i>
-                            <span>After Effects</span>
-                        </div>
-                        <div class="skill-tile">
-                            <i class="fas fa-cube"></i>
-                            <span>Cinema 4D</span>
-                        </div>
-                        <div class="skill-tile">
-                            <i class="fas fa-lightbulb"></i>
-                            <span>Redshift</span>
-                        </div>
-                        <div class="skill-tile">
-                            <i class="fas fa-video"></i>
-                            <span>Premiere Pro</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skills-group">
-                    <h3 class="skills-group-title">Design Tools</h3>
-                    <div class="skills-grid">
-                        <div class="skill-tile">
-                            <i class="fas fa-pen-nib"></i>
-                            <span>Illustrator</span>
-                        </div>
-                        <div class="skill-tile">
-                            <i class="fas fa-image"></i>
-                            <span>Photoshop</span>
-                        </div>
-                        <div class="skill-tile">
-                            <i class="fas fa-mobile-alt"></i>
-                            <span>Rive</span>
-                        </div>
-                        <div class="skill-tile">
-                            <i class="fas fa-code"></i>
-                            <span>Lottie</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skills-group">
-                    <h3 class="skills-group-title">Techniques</h3>
-                    <div class="skills-grid">
-                        <div class="skill-tile">
-                            <i class="fas fa-running"></i>
-                            <span>Animation</span>
-                        </div>
-                        <div class="skill-tile">
-                            <i class="fas fa-object-group"></i>
-                            <span>Composition</span>
-                        </div>
-                        <div class="skill-tile">
-                            <i class="fas fa-lightbulb"></i>
-                            <span>Lighting</span>
-                        </div>
-                        <div class="skill-tile">
-                            <i class="fas fa-paint-brush"></i>
-                            <span>Rendering</span>
-                        </div>
-                        <div class="skill-tile">
-                            <i class="fas fa-cube"></i>
-                            <span>3D</span>
-                        </div>
-                        <div class="skill-tile">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Motion Graphics</span>
-                        </div>
-                        <div class="skill-tile">
-                            <i class="fas fa-edit"></i>
-                            <span>Storyboarding</span>
-                        </div>
-                        <div class="skill-tile">
-                            <i class="fas fa-copyright"></i>
-                            <span>Branding</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skills-group">
-                    <h3 class="skills-group-title">Soft Skills</h3>
-                    <div class="skills-grid">
-                        <div class="skill-tile">
-                            <i class="fas fa-users"></i>
-                            <span>Teamwork</span>
-                        </div>
-                        <div class="skill-tile">
-                            <i class="fas fa-book-open"></i>
-                            <span>Storytelling</span>
-                        </div>
-                        <div class="skill-tile">
-                            <i class="fas fa-clock"></i>
-                            <span>Time Management</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience -->
-        <section class="section">
-            <h2 class="section-title"><i class="fas fa-briefcase"></i> Work Experience</h2>
-            
-            <div class="experience-item">
-                <div class="job-header">
-                    <h3 class="job-title">Motion Designer</h3>
-                    <span class="date">08/2019 - 04/2025</span>
-                </div>
-                <div class="company"><a href="https://redcollar.ru/en/" target="_blank" rel="noopener noreferrer">Red Collar</a>, Russia</div>
-                <div class="company-description">Twice announced agency of the year worldwide</div>
-                <ul class="responsibilities">
-                    <li>Won the <strong>Best Showreel Of the Year</strong> in 2020 and 2nd place in 2021 by the largest digital award in Europe by showcasing and combining agency projects into a coherent storytelling</li>
-                    <li>Developed <strong>animated and static 3D compositions</strong> for client websites, contributing to award-winning results</li>
-                    <li>Created <strong>lighting, coloring, and rendering</strong> setups for high-quality 3D visualizations</li>
-                    <li>Collaborated with multiple departments to ensure <strong>cohesive visual language</strong> across projects</li>
-                </ul>
-            </div>
-            
-            <div class="experience-item">
-                <div class="job-header">
-                    <h3 class="job-title">Designer (Internship)</h3>
-                    <span class="date">02/2019 - 07/2019</span>
-                </div>
-                <div class="company"><a href="https://redcollar.ru/en/" target="_blank" rel="noopener noreferrer">Red Collar</a>, Russia</div>
-                <div class="company-description">Twice announced agency of the year worldwide</div>
-                <ul class="responsibilities">
-                    <li>Assisted senior designers with <strong>visual asset creation</strong> and animation tasks</li>
-                    <li>Learned essential workflows for <strong>motion design production</strong> in a professional environment</li>
-                    <li>Contributed to client projects under supervision, developing technical and collaborative skills</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Key Projects -->
-        <section class="section">
-            <h2 class="section-title"><i class="fas fa-project-diagram"></i> Key Projects</h2>
-            
-            <div class="experience-item">
-                <div class="job-header">
-                    <h3 class="job-title">Megafon</h3>
-                    <span class="date">Cloud Service Website</span>
-                </div>
-                <div class="company-description">Top 3 telecom company in Russia with 75 million clients</div>
-                <ul class="responsibilities">
-                    <li>Achieved <strong>3rd place in top Telecom websites</strong> of the year by developing a series of animated and static 3D compositions for a Cloud service website</li>
-                    <span class="tag">#composition</span> <span class="tag">#lighting</span> <span class="tag">#Cinema4D</span> <span class="tag">#animation</span>
-                </ul>
-            </div>
-            
-            <div class="experience-item">
-                <div class="job-header">
-                    <h3 class="job-title">MTS</h3>
-                    <span class="date">Telecom Website & Event Branding</span>
-                </div>
-                <div class="company-description">Top 3 telecom company in Russia with 88 million clients</div>
-                <ul class="responsibilities">
-                    <li>Won <strong>2 awards</strong> (top telecom website and business services on the Russian internet) by setting up the lighting and coloring and running the final rendering for the work of three 3D designers</li>
-                    <li>Developed <strong>event branding</strong> for a design community conference with an 8000 audience by crafting all video materials</li>
-                    <span class="tag">#rendering</span> <span class="tag">#lighting</span> <span class="tag">#branding</span> <span class="tag">#team-work</span>
-                </ul>
-            </div>
-            
-            <div class="experience-item">
-                <div class="job-header">
-                    <h3 class="job-title">EcomSolutions</h3>
-                    <span class="date">Website & Promo Video</span>
-                </div>
-                <div class="company-description">US software development company</div>
-                <ul class="responsibilities">
-                    <li>Animated <strong>vector illustrations</strong> using Lottie for a website, and created a 3D promo video based on the same illustrations</li>
-                    <span class="tag">#Lottie</span> <span class="tag">#storyboard</span> <span class="tag">#Cinema4D</span> <span class="tag">#AfterEffects</span> <span class="tag">#animation</span>
-                </ul>
-            </div>
-            
-            <div class="experience-item">
-                <div class="job-header">
-                    <h3 class="job-title">Bronitex</h3>
-                    <span class="date">Website 3D Video</span>
-                </div>
-                <div class="company-description">Award-winning product website</div>
-                <ul class="responsibilities">
-                    <li>Won <strong>six 1st place prizes</strong> in awards by creating a 3D video for a website, including FWA of the Day by The FWA and Website of the Day by CSS design awards</li>
-                    <span class="tag">#3D</span> <span class="tag">#animation</span> <span class="tag">#Cinema4D</span> <span class="tag">#teamwork</span>
-                </ul>
-            </div>
-            
-            <div class="experience-item">
-                <div class="job-header">
-                    <h3 class="job-title">Humans</h3>
-                    <span class="date">Fintech App Videos</span>
-                </div>
-                <div class="company-description">Fintech app with 723,000 WAU and 1.4 million clients</div>
-                <ul class="responsibilities">
-                    <li>Crafted <strong>10+ videos and animations</strong> for a fintech app with 723,000 WAU and 1.4 million clients including explainers and advertisements</li>
-                    <li>Designed engaging visual storytelling to explain complex financial services to users</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Education -->
-        <section class="section">
-            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
-            <div class="education-item">
-                <div class="job-header">
-                    <h3 class="job-title">Bachelor's degree in Architecture</h3>
-                    <span class="date">2012 - 2017</span>
-                </div>
-                <div class="school">Voronezh State Technical University, Russia</div>
-            </div>
-            
-            <!-- Download button on white background -->
-            <div class="white-download-container">
-                <a href="javascript:void(0)" onclick="downloadCV()" class="download-btn-white">
-                    <i class="fas fa-file-download"></i> Download CV in PDF
-                </a>
-            </div>
-        </section>
+    <!-- Professional Summary Section -->
+    <div class="professional-summary">
+        <h2 class="section-title"><i class="fas fa-user-tie"></i> Professional Summary</h2>
+        <p>Creative and detail-oriented Motion Designer with 6+ years of experience in the animation and 3D design field. Proven record of creating exceptional graphics for top companies. I help brands enhance their visual storytelling and presence through compelling animated and static compositions.</p>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Olga Chernikova. All rights reserved.</p>
+    <!-- Skills Preview -->
+    <div style="max-width: 960px; margin: 15px auto; padding: 0 20px;">
+        <h2 style="margin-bottom: 12px; color: #333; font-size: 1.4rem;">Skills & Tools</h2>
+        
+        <div class="skills-container">
+            <div class="skills-group">
+                <h3 class="skills-group-title">Motion Software</h3>
+                <div class="skills-grid">
+                    <div class="skill-tile">
+                        <i class="fas fa-film"></i>
+                        <span>After Effects</span>
+                    </div>
+                    <div class="skill-tile">
+                        <i class="fas fa-cube"></i>
+                        <span>Cinema 4D</span>
+                    </div>
+                    <div class="skill-tile">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Redshift</span>
+                    </div>
+                    <div class="skill-tile">
+                        <i class="fas fa-video"></i>
+                        <span>Premiere</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skills-group">
+                <h3 class="skills-group-title">Design Tools</h3>
+                <div class="skills-grid">
+                    <div class="skill-tile">
+                        <i class="fas fa-pen-nib"></i>
+                        <span>Illustrator</span>
+                    </div>
+                    <div class="skill-tile">
+                        <i class="fas fa-image"></i>
+                        <span>Photoshop</span>
+                    </div>
+                    <div class="skill-tile">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Rive</span>
+                    </div>
+                    <div class="skill-tile">
+                        <i class="fas fa-code"></i>
+                        <span>Lottie</span>
+                    </div>
+                </div>
+            </div>
         </div>
-    </footer>
-
-
-    <!-- Back to top button -->
-    <a href="#" class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        // Initialize particles.js with motion graphics style
-        document.addEventListener('DOMContentLoaded', function() {
-            particlesJS('particles-js', {
-                "particles": {
-                    "number": {
-                        "value": 120,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
-                    },
-                    "color": {
-                        "value": ["#ff6b6b", "#e74c3c", "#ff758c", "#ffffff"]
-                    },
-                    "shape": {
-                        "type": ["circle", "triangle", "polygon"],
-                        "stroke": {
-                            "width": 0,
-                            "color": "#000000"
-                        },
-                        "polygon": {
-                            "nb_sides": 6
-                        }
-                    },
-                    "opacity": {
-                        "value": 0.6,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 1,
-                            "opacity_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "size": {
-                        "value": 4,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 3,
-                            "size_min": 0.5,
-                            "sync": false
-                        }
-                    },
-                    "line_linked": {
-                        "enable": true,
-                        "distance": 150,
-                        "color": "#ff6b6b",
-                        "opacity": 0.3,
-                        "width": 1
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 3,
-                        "direction": "none",
-                        "random": true,
-                        "straight": false,
-                        "out_mode": "bounce",
-                        "bounce": true,
-                        "attract": {
-                            "enable": true,
-                            "rotateX": 600,
-                            "rotateY": 1200
-                        }
-                    }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "repulse"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "push"
-                        },
-                        "resize": true
-                    },
-                    "modes": {
-                        "grab": {
-                            "distance": 200,
-                            "line_linked": {
-                                "opacity": 1
-                            }
-                        },
-                        "bubble": {
-                            "distance": 400,
-                            "size": 40,
-                            "duration": 2,
-                            "opacity": 8,
-                            "speed": 3
-                        },
-                        "repulse": {
-                            "distance": 100,
-                            "duration": 0.4
-                        },
-                        "push": {
-                            "particles_nb": 4
-                        },
-                        "remove": {
-                            "particles_nb": 2
-                        }
-                    }
-                },
-                "retina_detect": true
-            });
-        });
-
-        // Back to top button functionality
-        const backToTopButton = document.querySelector('.back-to-top');
-        
-        // Show button when user scrolls down 300px
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 100) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
-        
-        // Smooth scroll to top when clicked
-        backToTopButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Function to download PDF
-        function downloadCV() {
-            // Create a link to your PDF file
-            var link = document.createElement('a');
-            link.href = 'https://raw.githubusercontent.com/ChernikovaOlga/CV/main/CV_Chernikova_design.pdf';
-            link.download = 'CV_Chernikova_design.pdf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    </script>
+    </div>
 </body>
 </html>

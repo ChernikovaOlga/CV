@@ -658,3 +658,31 @@ body {
         font-size: 16px;
     }
 }
+
+/* Стили для структурированного опыта работы */
+.position-item {
+    margin-bottom: 10px;
+    padding-left: 15px;
+    border-left: 2px solid var(--primary-color);
+}
+
+.position-item:last-child {
+    margin-bottom: 15px;
+}
+
+.position-title {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin: 0;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .position-item {
+        padding-left: 10px;
+    }
+    
+    .position-title {
+        font-size: 1rem;
+    }
+}

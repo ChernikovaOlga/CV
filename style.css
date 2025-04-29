@@ -1,15 +1,28 @@
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+/* Variables */
+:root {
+    --primary-color: #FF3CAC;
+    --secondary-color: #784BA0;
+    --tertiary-color: #2B86C5;
+    --accent-color: #00FFFF;
+    --gradient-main: linear-gradient(90deg, #FF3CAC, #784BA0, #2B86C5);
+    --gradient-button: linear-gradient(90deg, #FF3CAC, #784BA0);
+    --text-color: #333;
+    --text-muted: #666;
+    --light-bg: #f9f9f9;
+    --dark-bg: #111;
+}
+
+/* ANIMATIONS */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) scale(1);
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    50% {
+        transform: translateY(-10px) scale(1.05);
     }
 }
 
-@keyframes gradientText {
+@keyframes textGradient {
     0% {
         background-position: 0% 50%;
     }
@@ -21,107 +34,32 @@
     }
 }
 
-@keyframes expandWidth {
-    from {
-        width: 30px;
+@keyframes widthPulse {
+    0%, 100% {
+        width: 50%;
+        left: 25%;
     }
-    to {
-        width: 50px;
+    50% {
+        width: 100%;
+        left: 0;
     }
-}/* Variables */
-:root {
-    --primary-color: #ff6b6b;
-    --secondary-color: #2c3e50;
-    --accent-color: #e74c3c;
-    --accent-gradient: linear-gradient(90deg, #ff6b6b, #e74c3c, #ff758c);
-    --text-color: #333;
-    --text-muted: #666;
-    --light-bg: #f9f9f9;
-    --dark-bg: #343a40;
-    --animation-bg: #0F0F23;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    /* Container and sections padding */
-    .container {
-        padding: 0 15px;
+@keyframes moveGrid {
+    0% {
+        transform: translateY(0);
     }
-    
-    .section {
-        padding-left: 5px;
-        padding-right: 5px;
+    100% {
+        transform: translateY(40px);
     }
-    
-    /* Contact section */
-    .contact {
-        flex-direction: column; /* Stack contacts vertically */
-        align-items: center;
-        gap: 8px; /* Reduced gap between contacts */
-        padding: 0 10px; /* Add side padding */
-        max-width: 100%; /* Ensure it doesn't overflow */
-    }
-    
-    /* Style for contact links */
-    .contact a {
-        font-size: 0.9rem; /* Slightly smaller font */
-        padding: 2px 0; /* Minimal padding to keep compact */
-        width: auto; /* Auto width */
-        justify-content: center; /* Center the contents */
-    }
-    
-    /* Job headers */
-    .job-header {
-        flex-direction: column; /* Stack title and date */
-        align-items: flex-start; /* Align to the left */
-        gap: 5px;
-    }
-    
-    .date {
-        padding-left: 0; /* Remove left padding */
-        font-size: 0.9rem; /* Slightly smaller font */
-    }
-    
-    /* Responsibilities */
-    .responsibilities {
-        padding-left: 25px; /* Increase indent for list items */
-    }
-    
-    .responsibilities li {
-        margin-bottom: 12px; /* More space between list items */
-    }
-    
-    /* Mobile responsive adjustments for skills section */
-    .skills-code {
-        font-size: 14px;
-        padding: 14px;
-        overflow-x: auto; /* Enable horizontal scrolling if needed */
-    }
-    
-    .indent-1 {
-        padding-left: 16px;
-    }
-    
-    .indent-2 {
-        padding-left: 32px;
-    }
-    
-    .indent-3 {
-        padding-left: 48px;
-    }
-    
-    .skill-pill {
-        padding: 3px 8px;
-        margin: 0 4px 6px 0; /* Increased bottom margin */
-        /* Same colors as desktop */
-        background-color: rgba(255, 107, 107, 0.15);
-        color: #ff6b6b;
-    }
+}
 
-    /* Tags for project keywords */
-    .tag {
-        font-size: 0.75rem;
-        padding: 2px 5px;
+@keyframes moveLine {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(100vw + 100%));
     }
 }
 
@@ -145,244 +83,242 @@ body {
     padding: 0 20px;
 }
 
-/* Header - 3D Motion Design Style */
+/* ULTRA-NARROW HEADER - Motion Design Style */
 .header {
-    background: #0c0c1d;
-    background-image: url('https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-    background-size: cover;
-    background-position: center;
-    background-blend-mode: overlay;
-    color: white;
-    padding: 50px 0;
-    text-align: center;
-    margin-bottom: 30px;
     position: relative;
+    height: 210px; /* Ultra-narrow header */
+    background-color: var(--dark-bg);
     overflow: hidden;
-    border-bottom: 5px solid var(--primary-color);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-/* Pseudo-elements to create 3D effect */
-.header:before {
-    content: "";
+/* Animated Background Elements */
+.motion-bg {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(255,107,107,0.4) 0%, rgba(12,12,29,0.7) 100%);
+    width: 100%;
+    height: 100%;
     z-index: 1;
 }
 
-.header:after {
-    content: "";
+.motion-element {
     position: absolute;
-    width: 150%;
-    height: 100px;
-    background: linear-gradient(to right, transparent, rgba(255,107,107,0.5), transparent);
-    transform: rotate(-45deg) translateX(-50%);
-    top: 20%;
-    left: 0;
-    animation: lightBeam 8s infinite linear;
-    z-index: 1;
+    border-radius: 50%;
+    filter: blur(8px);
+    opacity: 0.7;
+    animation: float 8s infinite ease-in-out;
 }
 
-@keyframes lightBeam {
-    0% {
-        transform: rotate(-45deg) translateX(-100%);
-        opacity: 0;
-    }
-    20% {
-        opacity: 0.7;
-    }
-    50% {
-        opacity: 0.3;
-    }
-    80% {
-        opacity: 0.7;
-    }
-    100% {
-        transform: rotate(-45deg) translateX(200%);
-        opacity: 0;
-    }
+.element-1 {
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    top: 10%;
+    left: 15%;
+    animation-delay: 0s;
 }
 
-#particles-js {
+.element-2 {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(45deg, var(--tertiary-color), var(--accent-color));
+    bottom: 15%;
+    right: 10%;
+    animation-delay: 1s;
+}
+
+.element-3 {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, var(--primary-color), #FF5858);
+    bottom: 25%;
+    left: 25%;
+    animation-delay: 2s;
+}
+
+.element-4 {
+    width: 75px;
+    height: 75px;
+    background: linear-gradient(45deg, #8A2387, #E94057);
+    top: 15%;
+    right: 20%;
+    animation-delay: 3s;
+}
+
+/* Lines animation */
+.motion-lines {
     position: absolute;
     width: 100%;
     height: 100%;
+    z-index: 2;
+    opacity: 0.4;
+}
+
+.line {
+    position: absolute;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+    animation: moveLine 8s infinite linear;
+}
+
+.line-1 {
+    width: 40%;
+    top: 20%;
+    left: -40%;
+    animation-delay: 0s;
+}
+
+.line-2 {
+    width: 30%;
+    top: 40%;
+    left: -30%;
+    animation-delay: 2s;
+}
+
+.line-3 {
+    width: 50%;
+    top: 60%;
+    left: -50%;
+    animation-delay: 4s;
+}
+
+.line-4 {
+    width: 35%;
+    top: 80%;
+    left: -35%;
+    animation-delay: 6s;
+}
+
+/* Grid animation */
+.motion-grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 15px 15px;
+    z-index: 2;
+    animation: moveGrid 20s infinite linear;
+}
+
+/* Overlay for better text visibility */
+.header-overlay {
+    position: absolute;
     top: 0;
     left: 0;
-    opacity: 0.7;
-    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%);
+    z-index: 3;
 }
 
+/* Ultra-compact header content */
 .header-content {
     position: relative;
-    z-index: 2;
-    animation: fadeInUp 1s ease-out;
-    max-width: 90%;
-    margin: 0 auto;
+    z-index: 10;
+    text-align: center;
+    color: white;
+    max-width: 800px;
+    padding: 0 15px;
 }
 
+/* Reduced name font size and margin */
 .name {
-    font-size: 3.5rem;
-    margin: 0 0 15px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
+    font-size: 2rem;
     font-weight: 700;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6), 
-                 0 0 20px rgba(255,107,107,0.5);
-    background: linear-gradient(90deg, #ff6b6b, #f45e5e, #e74c3c);
+    margin-bottom: 1px;
+    letter-spacing: 1px;
+    background: var(--gradient-main);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: gradientText 8s ease infinite;
-    transform-style: preserve-3d;
-    perspective: 500px;
+    animation: textGradient 6s infinite linear;
+    text-shadow: 0 0 10px rgba(255, 60, 172, 0.5);
 }
 
-.title {
-    font-size: 1.4rem;
-    margin: 0 0 25px;
-    letter-spacing: 1px;
+.glitch-container {
     position: relative;
     display: inline-block;
-    padding: 0 15px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 5px;
 }
 
-.title:before, .title:after {
-    content: "";
+/* Reduced title font size and margin */
+.title {
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 6px;
+}
+
+.title::after {
+    content: '';
     position: absolute;
+    width: 100%;
     height: 1px;
-    width: 30px;
-    background: var(--primary-color);
-    top: 50%;
-    box-shadow: 0 0 15px 2px rgba(255,107,107,0.6);
-    animation: expandWidth 2s ease-in-out infinite alternate;
+    bottom: -3px;
+    left: 0;
+    background: var(--gradient-main);
+    animation: widthPulse 3s infinite ease-in-out;
 }
 
-.title:before {
-    right: 100%;
-}
-
-.title:after {
-    left: 100%;
-}
-
-/* Responsive fixes for header on mobile */
-@media (max-width: 768px) {
-    .header {
-        padding: 30px 0;
-    }
-    
-    .name {
-        font-size: 2.2rem; /* Smaller font size for mobile */
-        letter-spacing: 2px;
-        white-space: normal; /* Allow wrapping */
-        line-height: 1.2;
-    }
-    
-    .title {
-        font-size: 1.1rem;
-        margin: 0 0 15px;
-    }
-    
-    .header-content {
-        padding: 0 10px;
-    }
-}
-
-/* Contacts in one line and centered */
+/* Contact in header - more compact */
 .contact {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    flex-wrap: nowrap; /* Prevents wrapping to new line */
-    width: 100%;
-    margin: 0 auto;
-    margin-bottom: 20px; /* Increase bottom margin */
-}
-
-/* Download PDF button in header */
-.download-btn {
-    display: inline-block;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    margin-top: 10px;
-    backdrop-filter: blur(5px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.download-btn:hover {
-    background-color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    color: white;
-    border-color: transparent;
-}
-
-.download-btn i {
-    margin-right: 8px;
-}
-
-/* Responsive fixes for download button */
-@media (max-width: 768px) {
-    .download-btn {
-        padding: 7px 14px;
-        font-size: 0.9rem;
-        margin-top: 5px;
-    }
-}
-
-/* Styles for download button on white background */
-.white-download-container {
-    margin-top: 30px;
-    text-align: center;
-}
-
-.download-btn-white {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.download-btn-white:hover {
-    background-color: #e74c3c;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    color: white;
-}
-
-.download-btn-white i {
-    margin-right: 8px;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 6px;
 }
 
 .contact a {
     color: white;
     text-decoration: none;
+    font-size: 0.75rem;
+    padding: 3px 7px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 5px;
-    white-space: nowrap; /* Prevents break inside the link */
+    gap: 3px;
 }
 
 .contact a:hover {
-    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 60, 172, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Smaller download button in header */
+.download-btn {
+    display: inline-block;
+    background: var(--gradient-button);
+    color: white;
+    text-decoration: none;
+    padding: 4px 9px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-top: 0;
+    box-shadow: 0 3px 8px rgba(255, 60, 172, 0.3);
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(255, 60, 172, 0.5);
+}
+
+.download-btn i {
+    margin-right: 3px;
 }
 
 /* Main content */
@@ -391,7 +327,7 @@ body {
 }
 
 .section {
-    margin-bottom: 40px;
+    margin-bottom: 35px;
     padding-bottom: 20px;
     border-bottom: 1px solid #e0e0e0;
 }
@@ -402,48 +338,39 @@ body {
 
 .section-title {
     color: var(--primary-color);
-    font-size: 1.6rem;
-    margin-bottom: 20px;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
-    gap: 10px;
-}
-
-/* Professional summary */
-.highlight {
-    background: rgba(255,107,107,0.1);
-    font-weight: bold;
-    padding: 0.1rem 0.2rem;
-    border-radius: 0.2rem;
-    color: inherit;
+    gap: 8px;
 }
 
 /* Experience */
 .experience-item {
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 }
 
 .experience-item:last-child {
     margin-bottom: 0;
 }
 
-/* Dates on right and headers - improved alignment */
+/* Dates on right and headers */
 .job-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     width: 100%;
 }
 
 .job-title {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     color: var(--secondary-color);
     margin: 0;
 }
 
 .date {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: var(--text-muted);
     white-space: nowrap;
     text-align: right;
@@ -451,8 +378,8 @@ body {
 }
 
 .company {
-    font-size: 1.1rem;
-    margin: 5px 0;
+    font-size: 1.05rem;
+    margin: 4px 0;
 }
 
 .company a {
@@ -466,9 +393,9 @@ body {
 
 .company-description {
     font-style: italic;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .responsibilities {
@@ -488,7 +415,7 @@ body {
 /* Tags for project keywords */
 .tag {
     display: inline-block;
-    background-color: rgba(255, 107, 107, 0.1);
+    background-color: rgba(255, 60, 172, 0.1);
     color: var(--primary-color);
     padding: 3px 8px;
     margin: 0 4px 4px 0;
@@ -503,175 +430,97 @@ body {
 }
 
 .school {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
 }
 
-.school a {
-    color: var(--primary-color);
-    text-decoration: none;
-}
-
-.school a:hover {
-    text-decoration: underline;
-}
-
-/* Code-like elements */
-.code-block {
-  background: #2d2d2d;
-  color: #f8f8f2;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  overflow-x: auto;
-  font-family: monospace;
-  white-space: pre;
-}
-
-/* Updated block for skills */
-/* Styling for skills section with space-based indentation */
-.skills-code {
-  font-family: 'Consolas', 'Monaco', monospace;
-  background-color: #282c34;
-  color: #f8f8f2;
-  border-radius: 6px;
-  padding: 16px;
-  line-height: 1.3;
-  font-size: 16px;
-  overflow: hidden;
-}
-
-/* Color scheme */
-.code-var {
-  color: #e6db74; /* yellow for variables */
-}
-
-.code-string {
-  color: #66d9ef; /* soft blue for strings */
-}
-
-.code-bracket {
-  color: #a6e22e; /* light green for brackets */
-}
-
-/* Base code line with reduced spacing */
-.code-line {
-  white-space: nowrap;
-  margin: 1px 0;
-}
-
-/* Adjusted indents - compact spacing */
-.indent-1 {
-  padding-left: 18px;
-}
-
-.indent-2 {
-  padding-left: 36px;
-}
-
-.indent-3 {
-  padding-left: 54px;
-}
-
-/* Skills row with tight spacing */
-.skills-row {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 2px 0 4px 0;
-}
-
-/* Skills Tile Layout */
+/* ULTRA-FLAT Skills Tiles */
 .skills-container {
-  width: 100%;
+    width: 100%;
 }
 
 .skills-group {
-  margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 .skills-group-title {
-  font-size: 1.2rem;
-  color: var(--secondary-color);
-  margin-bottom: 12px;
-  padding-bottom: 5px;
-  border-bottom: 2px solid var(--primary-color);
+    font-size: 1rem;
+    color: var(--secondary-color);
+    margin-bottom: 6px;
+    padding-bottom: 3px;
+    border-bottom: 2px solid var(--primary-color);
 }
 
+/* FLATTER tiles with less vertical height */
 .skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 6px;
 }
 
 .skill-tile {
-  background: linear-gradient(145deg, #f8f9fa, #e9ecef);
-  border-radius: 8px;
-  padding: 12px 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
-  min-height: 80px; /* Reduced height */
+    background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+    border-radius: 5px;
+    padding: 5px 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    min-height: 45px; /* ULTRA FLAT height */
 }
 
 .skill-tile:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 10px rgba(255, 107, 107, 0.25);
-  background: linear-gradient(145deg, #fff, #f8f9fa);
-  border: 1px solid rgba(255, 107, 107, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(255, 60, 172, 0.2);
+    border: 1px solid rgba(255, 60, 172, 0.2);
 }
 
 .skill-tile i {
-  font-size: 20px; /* Smaller icon */
-  color: var(--primary-color);
-  margin-bottom: 8px; /* Reduced spacing */
+    font-size: 15px;
+    color: var(--primary-color);
+    margin-bottom: 2px; /* Reduced spacing */
 }
 
 .skill-tile span {
-  font-size: 0.85rem;
-  color: var(--text-color);
-  font-weight: 500;
+    font-size: 0.65rem;
+    color: var(--text-color);
+    font-weight: 500;
 }
 
-/* Responsive adjustments for skill tiles */
-@media (max-width: 768px) {
-  .skills-grid {
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    gap: 8px;
-  }
-  
-  .skill-tile {
-    padding: 8px 5px;
-    min-height: 70px; /* Even smaller for mobile */
-  }
-  
-  .skill-tile i {
-    font-size: 18px;
-    margin-bottom: 5px;
-  }
-  
-  .skill-tile span {
-    font-size: 0.75rem;
-  }
+/* Download button on white background */
+.white-download-container {
+    margin-top: 25px;
+    text-align: center;
 }
 
-/* Old Skill pill style kept for compatibility */
-.skill-pill {
-  background-color: rgba(255, 107, 107, 0.15); /* Light theme color background */
-  color: #ff6b6b; /* Theme color text */
-  padding: 4px 10px;
-  margin: 0 5px 5px 0;
-  border-radius: 4px;
-  display: inline-block;
-  font-size: 15px;
+.download-btn-white {
+    display: inline-block;
+    background: var(--gradient-button);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(255, 60, 172, 0.3);
+}
+
+.download-btn-white:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 60, 172, 0.5);
+}
+
+.download-btn-white i {
+    margin-right: 6px;
 }
 
 /* Footer */
 .footer {
     background-color: var(--dark-bg);
     color: white;
-    padding: 20px 0;
+    padding: 18px 0;
     text-align: center;
     font-size: 0.9rem;
 }
@@ -681,19 +530,19 @@ body {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
-    background-color: var(--primary-color);
+    background: var(--gradient-button);
     color: white;
     text-align: center;
-    line-height: 50px;
-    font-size: 20px;
+    line-height: 45px;
+    font-size: 18px;
     cursor: pointer;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s, visibility 0.3s;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000;
 }
 
@@ -703,5 +552,109 @@ body {
 }
 
 .back-to-top:hover {
-    background-color: #e74c3c;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(255, 60, 172, 0.5);
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    /* Header adjustments for mobile */
+    .header {
+        height: 200px;
+    }
+    
+    .name {
+        font-size: 1.6rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .title {
+        font-size: 0.8rem;
+        letter-spacing: 1.5px;
+    }
+    
+    .contact {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px;
+    }
+    
+    .contact a {
+        font-size: 0.7rem;
+        padding: 2px 6px;
+    }
+    
+    .download-btn {
+        font-size: 0.7rem;
+        padding: 3px 7px;
+        margin-top: 4px;
+    }
+    
+    /* Container and sections padding */
+    .container {
+        padding: 0 15px;
+    }
+    
+    .section {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    
+    /* Job headers */
+    .job-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .date {
+        padding-left: 0;
+        font-size: 0.85rem;
+    }
+    
+    /* Responsibilities */
+    .responsibilities {
+        padding-left: 20px;
+    }
+    
+    .responsibilities li {
+        margin-bottom: 10px;
+    }
+    
+    /* Ultra-flat skills for mobile */
+    .skills-grid {
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        gap: 5px;
+    }
+    
+    .skill-tile {
+        min-height: 40px;
+        padding: 4px 3px;
+    }
+    
+    .skill-tile i {
+        font-size: 13px;
+        margin-bottom: 2px;
+    }
+    
+    .skill-tile span {
+        font-size: 0.6rem;
+    }
+    
+    /* Section titles */
+    .section-title {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+    
+    /* Back to top */
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 16px;
+    }
 }

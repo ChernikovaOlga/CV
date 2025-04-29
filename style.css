@@ -1,4 +1,34 @@
-/* Variables */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes gradientText {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes expandWidth {
+    from {
+        width: 30px;
+    }
+    to {
+        width: 50px;
+    }
+}/* Variables */
 :root {
     --primary-color: #ff6b6b;
     --secondary-color: #2c3e50;
@@ -115,21 +145,66 @@ body {
     padding: 0 20px;
 }
 
-/* Header - Motion Design Style */
+/* Header - 3D Motion Design Style */
 .header {
-    background: #0F0F23;
-    background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    background: #0c0c1d;
+    background-image: url('https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
     background-size: cover;
     background-position: center;
     background-blend-mode: overlay;
     color: white;
-    padding: 60px 0;
+    padding: 50px 0;
     text-align: center;
     margin-bottom: 30px;
     position: relative;
     overflow: hidden;
     border-bottom: 5px solid var(--primary-color);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Pseudo-elements to create 3D effect */
+.header:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,107,107,0.4) 0%, rgba(12,12,29,0.7) 100%);
+    z-index: 1;
+}
+
+.header:after {
+    content: "";
+    position: absolute;
+    width: 150%;
+    height: 100px;
+    background: linear-gradient(to right, transparent, rgba(255,107,107,0.5), transparent);
+    transform: rotate(-45deg) translateX(-50%);
+    top: 20%;
+    left: 0;
+    animation: lightBeam 8s infinite linear;
+    z-index: 1;
+}
+
+@keyframes lightBeam {
+    0% {
+        transform: rotate(-45deg) translateX(-100%);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    80% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: rotate(-45deg) translateX(200%);
+        opacity: 0;
+    }
 }
 
 #particles-js {
@@ -139,12 +214,15 @@ body {
     top: 0;
     left: 0;
     opacity: 0.7;
+    z-index: 1;
 }
 
 .header-content {
     position: relative;
     z-index: 2;
     animation: fadeInUp 1s ease-out;
+    max-width: 90%;
+    margin: 0 auto;
 }
 
 .name {
@@ -153,12 +231,15 @@ body {
     text-transform: uppercase;
     letter-spacing: 3px;
     font-weight: 700;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6), 
+                 0 0 20px rgba(255,107,107,0.5);
     background: linear-gradient(90deg, #ff6b6b, #f45e5e, #e74c3c);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     animation: gradientText 8s ease infinite;
+    transform-style: preserve-3d;
+    perspective: 500px;
 }
 
 .title {
@@ -168,15 +249,17 @@ body {
     position: relative;
     display: inline-block;
     padding: 0 15px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .title:before, .title:after {
     content: "";
     position: absolute;
-    height: 2px;
+    height: 1px;
     width: 30px;
     background: var(--primary-color);
     top: 50%;
+    box-shadow: 0 0 15px 2px rgba(255,107,107,0.6);
     animation: expandWidth 2s ease-in-out infinite alternate;
 }
 
@@ -188,35 +271,26 @@ body {
     left: 100%;
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+/* Responsive fixes for header on mobile */
+@media (max-width: 768px) {
+    .header {
+        padding: 30px 0;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    
+    .name {
+        font-size: 2.2rem; /* Smaller font size for mobile */
+        letter-spacing: 2px;
+        white-space: normal; /* Allow wrapping */
+        line-height: 1.2;
     }
-}
-
-@keyframes gradientText {
-    0% {
-        background-position: 0% 50%;
+    
+    .title {
+        font-size: 1.1rem;
+        margin: 0 0 15px;
     }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-@keyframes expandWidth {
-    from {
-        width: 30px;
-    }
-    to {
-        width: 50px;
+    
+    .header-content {
+        padding: 0 10px;
     }
 }
 
@@ -235,26 +309,38 @@ body {
 /* Download PDF button in header */
 .download-btn {
     display: inline-block;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
     color: white;
     padding: 8px 16px;
-    border-radius: 4px;
+    border-radius: 25px;
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    margin-top: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 10px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .download-btn:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: var(--primary-color);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     color: white;
+    border-color: transparent;
 }
 
 .download-btn i {
     margin-right: 8px;
+}
+
+/* Responsive fixes for download button */
+@media (max-width: 768px) {
+    .download-btn {
+        padding: 7px 14px;
+        font-size: 0.9rem;
+        margin-top: 5px;
+    }
 }
 
 /* Styles for download button on white background */
@@ -498,52 +584,52 @@ body {
 }
 
 .skills-group {
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .skills-group-title {
   font-size: 1.2rem;
   color: var(--secondary-color);
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   padding-bottom: 5px;
   border-bottom: 2px solid var(--primary-color);
 }
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 12px;
 }
 
 .skill-tile {
   background: linear-gradient(145deg, #f8f9fa, #e9ecef);
-  border-radius: 10px;
-  padding: 15px 10px;
+  border-radius: 8px;
+  padding: 12px 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
-  min-height: 100px;
+  min-height: 80px; /* Reduced height */
 }
 
 .skill-tile:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(255, 107, 107, 0.25);
   background: linear-gradient(145deg, #fff, #f8f9fa);
-  border: 1px solid rgba(255, 107, 107, 0.3);
+  border: 1px solid rgba(255, 107, 107, 0.2);
 }
 
 .skill-tile i {
-  font-size: 24px;
+  font-size: 20px; /* Smaller icon */
   color: var(--primary-color);
-  margin-bottom: 10px;
+  margin-bottom: 8px; /* Reduced spacing */
 }
 
 .skill-tile span {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--text-color);
   font-weight: 500;
 }
@@ -551,21 +637,22 @@ body {
 /* Responsive adjustments for skill tiles */
 @media (max-width: 768px) {
   .skills-grid {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 8px;
   }
   
   .skill-tile {
-    padding: 10px 8px;
-    min-height: 90px;
+    padding: 8px 5px;
+    min-height: 70px; /* Even smaller for mobile */
   }
   
   .skill-tile i {
-    font-size: 20px;
+    font-size: 18px;
+    margin-bottom: 5px;
   }
   
   .skill-tile span {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 }
 
